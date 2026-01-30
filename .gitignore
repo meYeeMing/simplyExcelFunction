@@ -1,0 +1,33 @@
+## --- .NET / C# Build Artifacts ---
+[Bb]in/
+[Oo]bj/
+*.exe
+*.dll
+*.pdb
+
+## --- Excel-DNA Specifics ---
+# We ignore the generated .xll files because they are rebuilt every time.
+# If you want to keep the "packed" version for others to download, 
+# you can comment out the line below.
+*.xll
+*.dna
+*.xll.config
+
+## --- Visual Studio & VS Code ---
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## --- NuGet Packages ---
+# Modern .NET restores these automatically
+node_modules/
+packages/
+*.nupkg
+
+## --- OS Generated ---
+Thumbs.db
+Desktop.ini
+.DS_Store
