@@ -9,9 +9,9 @@ Build the package and copy the 64bit `.xll` from `bin\Debug\net10.0-windows\publ
 1. Open Excel
 2. Open the Options from the File menu item 
 3. in the Add-ins page , find Manage = Excel Add-ins. 
-<div style="text-align: center;">
-  <img src="readme\1.png" alt="Centered image">
-</div>
+    <div style="text-align: center;">
+    <img src="readme\1.png" alt="Centered image">
+    </div>
 4. Click Go 
 5. use Browse to add your `.xll` into your excel. 
 6. Restart the Excel
