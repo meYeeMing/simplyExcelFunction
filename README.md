@@ -16,5 +16,9 @@ Build the package and copy the 64bit `.xll` from `bin\Debug\net10.0-windows\publ
 5. use Browse to add your `.xll` into your excel. 
 6. Restart the Excel
 
+## Run The test case 
+dotnet test --no-build
+
 ## Current Function 
 **`=reDateTime($cell)`** use to convert a string date time format(yyyy-mm-dd hh:mm:ss) to excel date time format. 
+**`=unixToDateTime($cell)`** convert the unix time to Local Date Time
