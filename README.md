@@ -18,13 +18,14 @@ Build the package and copy the 64bit `.xll` from `bin\Debug\net10.0-windows\publ
 
 ## Build the `xll` or addon file 
 ```
-    dotnet clean && dotnet buil
+dotnet clean && dotnet build -c Release
 ```
 
 ## Run The test case 
 ```
-    dotnet test --no-build
+dotnet clean && dotnet restore --force && dotnet test --no-restore --logger "console;verbosity=normal"
 ```
 ## Current Function 
 **`=reDateTime($cell)`** use to convert a string date time format(yyyy-mm-dd hh:mm:ss) to excel date time format. 
 **`=unixToDateTime($cell)`** convert the unix time to Local Date Time
+**`=dateTimeToUnix($cell)`** convert the Local Date Time to unix time

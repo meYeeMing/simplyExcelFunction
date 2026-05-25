@@ -49,5 +49,32 @@ namespace DateTimeFunction.Tests
             var result = SimplyExcelFunctions.DateTimeFunction.unixToDateTime(input);
             Assert.Equal(expected, result);
         }
+        [Theory]
+        [InlineData("2026-04-08 14:13:00", 1775628780)]
+        [InlineData("23/04/2026 14:13:00", 1776924780)]
+        [InlineData(46120.60, 1775629440)]
+        public void DateTimeToUnix_ValidInput_ReturnsCorrectUnixTimestamp(object input, long expected)
+        {
+
+            var result = SimplyExcelFunctions.DateTimeFunction.dateTimeToUnix(input);
+            Assert.IsType<long>(result);
+            var unixTimestamp = (long)result;
+            Assert.Equal(expected, unixTimestamp);
+        }
+        [Fact]
+        public void DateTimeToUnix_DateTimeInput_ReturnsCorrectUnixTimestamp()
+        {
+            DateTime input = new DateTime(2026, 5, 25, 10, 0, 0);
+            long expected = 1779674400;
+            var result = SimplyExcelFunctions.DateTimeFunction.dateTimeToUnix(input);
+            Assert.Equal(expected, result);
+        }
+        [Theory]
+        [InlineData("2026-13-02",ExcelError.ExcelErrorValue)]
+        public void DateTimeToUnix_InvalidInput_ReturnsErrorMessage(object input, object expected)
+        {
+            var result = SimplyExcelFunctions.DateTimeFunction.dateTimeToUnix(input);
+            Assert.Equal(expected, result);
+        }
     }
 }

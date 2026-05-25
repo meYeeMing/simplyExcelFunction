@@ -5,7 +5,9 @@ using System.Globalization;
 using ExcelDna.Integration;
 using Microsoft.VisualBasic;
 
-public class DateTimeFunction
+
+
+public class DateTimeFunction 
 {
     [ExcelFunction(
         Description = "reformat to DateTime From String yyyy-mm-dd hh:mm:ss",
@@ -58,5 +60,42 @@ public class DateTimeFunction
             }
         }
         return ExcelError.ExcelErrorValue;
+    }
+    
+    [ExcelFunction(
+        Description = "Convert DateTime to Unix",
+        IsVolatile = true,
+        Category = "DateTime Functions"
+    )]
+    public static object dateTimeToUnix(object input)
+    {
+        DateTime tempDateTime;
+        if (input is DateTime dt){
+            tempDateTime = dt;
+        }
+        else if (input is double dbl){
+            try 
+            {
+                tempDateTime = DateTime.FromOADate(dbl);
+            }
+            catch 
+            {
+                return ExcelError.ExcelErrorValue;
+            }
+        }
+        else if (input is string str && DateTime.TryParse(str, out tempDateTime)){}        
+        else{
+            return ExcelError.ExcelErrorValue;
+        }
+        if (tempDateTime.Kind == DateTimeKind.Unspecified){
+            tempDateTime = DateTime.SpecifyKind(tempDateTime, DateTimeKind.Local);   
+        }
+        try{
+            long unixTimestamp = new DateTimeOffset(tempDateTime).ToUnixTimeSeconds();
+            return unixTimestamp;
+        }
+        catch{
+            return ExcelError.ExcelErrorValue;
+        }
     }
 }
